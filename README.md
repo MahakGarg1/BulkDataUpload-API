@@ -21,6 +21,6 @@ node index.js
 
 ```
 curl --location 'http://localhost:3004/upload' \
---form 'csvFile=@"/C:/Users/pankaj garg/Documents/user.csv"'
+--form 'csvFile=@"/C:/Users/mahak garg/Documents/user.csv"'
 ```
 
