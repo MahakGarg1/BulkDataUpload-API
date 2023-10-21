@@ -34,10 +34,15 @@ app.post('/upload', upload.single('csvFile'), (req, res) => {
     const name = row.username;
     const task = row.task;
     const status = row.status;
+     
+    
     console.log(`csvData ${status}`);
 
-  
-      })
+    // Validation 
+    if (!row.username || !row.task || !row.status) {
+      errors.push(`Missing required fields in row: ${row}`);
+     }
+     })
       .on('end', () => {
         if (validationErrors.length > 0) {
           res.status(400).json({ errors: validationErrors });
