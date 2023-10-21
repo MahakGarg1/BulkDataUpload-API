@@ -1,8 +1,8 @@
 class validator {
     static validateTaskInfo(row,errors,rowNo) {
-        missingValidation(row,errors,rowNo);
-        datatypeValidation(row,errors,rowNo);
-        constraintValidation(row,errors,rowNo);
+        validator.missingValidation(row,errors,rowNo);
+        validator.datatypeValidation(row,errors,rowNo);
+        validator.constraintValidation(row,errors,rowNo);
     }
     static missingValidation(row,errors,rowNo)
     {
@@ -39,4 +39,4 @@ class validator {
     }
     
   }
-          module.exports = validator;
+ module.exports = validator;
