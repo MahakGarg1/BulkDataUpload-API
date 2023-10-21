@@ -3,6 +3,7 @@ const fs = require('fs');
 const multer = require('multer');
 const csv = require('csv-parser');
 const path = require('path');
+const validator = require('./validator.js');
 
 const app = express();
 const port = 3004;
@@ -18,31 +19,16 @@ app.post('/upload', upload.single('csvFile'), (req, res) => {
     if (!req.file) {
       return res.status(400).json({ error: 'No file uploaded' });
     }
-  const storagePath = path.join('C:\\\\Users\\pankaj garg\\Documents', '', req.body.outputFilename);
-
+    const storagePath = path.join('C:\\\\Users\\pankaj garg\\Documents', '', req.body.outputFilename);
     const csvData = req.file.buffer.toString('utf8');
-
     const validationErrors = [];
-    const validData = [];
- 
-    // Parse CSV data and validate each row
     const stream = Readable.from(csvData);
-
+   let rowNo=1;
   stream
     .pipe(csv())
       .on('data', (row) => {
-        // Access data from CSV columns
-    const name = row.username;
-    const task = row.task;
-    const status = row.status;
-     
-    
-    console.log(`csvData ${status}`);
-   
-    // Validation
-    if (!row.username || !row.task || !row.status) {
-      errors.push(`Missing required fields in row: ${row}`);
-     }
+    validator.validateTaskInfo(row, validationErrors,rowNo);
+     rowNo++;
      })
       .on('end', () => {
         if (validationErrors.length > 0) {
