@@ -18,7 +18,8 @@ app.post('/upload', upload.single('csvFile'), (req, res) => {
     if (!req.file) {
       return res.status(400).json({ error: 'No file uploaded' });
     }
-  
+  const storagePath = path.join('C:\\\\Users\\pankaj garg\\Documents', '', req.body.outputFilename);
+
     const csvData = req.file.buffer.toString('utf8');
 
     const validationErrors = [];
@@ -37,7 +38,7 @@ app.post('/upload', upload.single('csvFile'), (req, res) => {
      
     
     console.log(`csvData ${status}`);
-   //  csvData.push(row);
+   
     // Validation
     if (!row.username || !row.task || !row.status) {
       errors.push(`Missing required fields in row: ${row}`);
