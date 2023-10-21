@@ -23,6 +23,7 @@ app.post('/upload', upload.single('csvFile'), (req, res) => {
 
     const validationErrors = [];
     const validData = [];
+
     // Parse CSV data and validate each row
     const stream = Readable.from(csvData);
 
@@ -35,7 +36,7 @@ app.post('/upload', upload.single('csvFile'), (req, res) => {
     const status = row.status;
     console.log(`csvData ${status}`);
 
-  // Process the data as needed
+  
       })
       .on('end', () => {
         if (validationErrors.length > 0) {
