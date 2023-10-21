@@ -23,7 +23,7 @@ app.post('/upload', upload.single('csvFile'), (req, res) => {
 
     const validationErrors = [];
     const validData = [];
-
+ 
     // Parse CSV data and validate each row
     const stream = Readable.from(csvData);
 
@@ -37,7 +37,7 @@ app.post('/upload', upload.single('csvFile'), (req, res) => {
      
     
     console.log(`csvData ${status}`);
-
+   //  csvData.push(row);
     // Validation
     if (!row.username || !row.task || !row.status) {
       errors.push(`Missing required fields in row: ${row}`);
