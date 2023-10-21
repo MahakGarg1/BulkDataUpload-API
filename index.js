@@ -38,7 +38,7 @@ app.post('/upload', upload.single('csvFile'), (req, res) => {
     
     console.log(`csvData ${status}`);
 
-    // Validation 
+    // Validation
     if (!row.username || !row.task || !row.status) {
       errors.push(`Missing required fields in row: ${row}`);
      }
